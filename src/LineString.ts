@@ -4,24 +4,25 @@ import Geometry from "./Geometry";
 export default class LineString implements Geometry {
   private points?: Array<Point>;;
 
-  constructor(points ?:Array<Point>) {
-    this.points = points ;
+  constructor(points ?:Array<Point> ) {
+    if (null==points){
+      this.points = []
+    }
+    else this.points = points ;
   }
   getType(): string{
     return "LineString";
   }
 
+  isEmpty():boolean{
+    return 0 == this.getNumPoints();
+  }
+
   getNumPoints(): number {
-    if(null ==this.points){
-      return 0;
-    }
     return this.points.length;
   }
 
   getPointN(n:number): Point{
-    if(null ==this.points ){
-      return null;
-    }
     if(this.getNumPoints()<=n ){
       return null;
     }

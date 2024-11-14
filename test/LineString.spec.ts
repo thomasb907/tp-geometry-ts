@@ -7,6 +7,7 @@ describe("test LinseString", () => {
     it("test default constructor", () => {
         const l = new LineString();
         expect(l.getType()).to.equal("LineString");
+        expect(l.isEmpty()).to.equal(true);
         expect((l.getNumPoints())).to.equal(0);
         expect((l.getPointN(3))).to.equal(null);
     });
@@ -15,6 +16,7 @@ describe("test LinseString", () => {
         const p2 = new Point([4.0,5.0]);
         const l = new LineString([p,p2]);
         expect(l.getType()).to.equal("LineString");
+        expect(l.isEmpty()).to.equal(false);
         expect((l.getNumPoints())).to.equal(2);
         expect((l.getPointN(1)).getCoordinate()).to.deep.equal([4.0,5.0]);
 
