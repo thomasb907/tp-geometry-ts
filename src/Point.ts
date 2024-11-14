@@ -1,4 +1,6 @@
 import Coordinate from "./Coordinate";
+import Envelope from "./Envelope";
+import EnvelopeBuilder from "./EnvelopeBuilder";
 import Geometry from "./Geometry";
 
 export default class Point implements Geometry {
@@ -19,6 +21,14 @@ export default class Point implements Geometry {
     this.coordinate = [this.x()+dx,this.y()+dy];
     return this;
  }
+
+  getEnvelope():Envelope{
+    const builder = new EnvelopeBuilder();
+    builder.insert(this.coordinate);
+    return builder.build();
+ }
+
+
 
   clone(): Point {
   return new Point([this.x(),this.y()])

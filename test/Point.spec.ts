@@ -20,6 +20,8 @@ describe("test Point", () => {
         expect(p.y()).to.equal(4.0);
         expect(p.translate(1,1).getCoordinate()).to.deep.equal([4.0,5.0]);
 
+        expect(p.getEnvelope().getXmax()).to.equal(4);
+
     });
     
 });
