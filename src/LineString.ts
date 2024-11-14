@@ -10,6 +10,22 @@ export default class LineString implements Geometry {
     }
     else this.points = points ;
   }
+
+  translate(dx:number,dy:number):this{
+    for (const point of this.points){
+      point.translate(dx,dy);
+    }
+    return this;
+  }
+
+  clone(): LineString {
+    let lpf : Array<Point> = [];
+    for (const point of this.points){
+      lpf.push(point.clone());
+    }
+    return new LineString(lpf);
+  }
+
   getType(): string{
     return "LineString";
   }

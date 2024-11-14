@@ -15,6 +15,16 @@ export default class Point implements Geometry {
     return this.coordinate;
   }
 
+  translate(dx:number,dy:number):this{
+    this.coordinate = [this.x()+dx,this.y()+dy];
+    return this;
+ }
+
+  clone(): Point {
+  return new Point([this.x(),this.y()])
+}
+
+
   getType(): string{
     return "Point";
   }

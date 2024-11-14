@@ -10,6 +10,8 @@ describe("test LinseString", () => {
         expect(l.isEmpty()).to.equal(true);
         expect((l.getNumPoints())).to.equal(0);
         expect((l.getPointN(3))).to.equal(null);
+        l.translate(1,1);
+        expect((l.getNumPoints())).to.equal(0);
     });
     it("test constructor with coordinates", () => {
         const p = new Point([3.0,4.0]);
@@ -19,7 +21,12 @@ describe("test LinseString", () => {
         expect(l.isEmpty()).to.equal(false);
         expect((l.getNumPoints())).to.equal(2);
         expect((l.getPointN(1)).getCoordinate()).to.deep.equal([4.0,5.0]);
-
+        expect(l.translate(1,1).getPointN(1).getCoordinate()).to.deep.equal([5.0,6.0]);
+        expect(l.getPointN(0).getCoordinate()).to.deep.equal([4.0,5.0]);
+        const copy = l.clone();
+        copy.translate(10.0,10.0);
+        expect(l.getPointN(0).getCoordinate()).to.deep.equal([4.0,5.0]);
+        expect(copy.getPointN(0).getCoordinate()).to.deep.equal([14.0,15.0]);
     });
     
 });
