@@ -3,8 +3,10 @@ import Geometry from "./Geometry";
 import Envelope from "./Envelope";
 import EnvelopeBuilder from "./EnvelopeBuilder";
 import GeometryVisitor from "./GeometryVisitor";
+import WktWriter from "./WktWriter";
+import AbstractGeometry from "./AbstractGeometry";
 
-export default class LineString implements Geometry {
+export default class LineString implements AbstractGeometry {
   private points?: Array<Point>;;
 
   constructor(points ?:Array<Point> ) {
@@ -28,7 +30,10 @@ export default class LineString implements Geometry {
     }
     return builder.build();
  }
-
+ asText(): String {
+  if (this.isEmpty()) return "Je suis une polyligne vide.";
+  return "Je suis une polyligne définie par "+this.getNumPoints()+" point(s)."
+}
 
   clone(): LineString {
     let lpf : Array<Point> = [];
@@ -39,8 +44,10 @@ export default class LineString implements Geometry {
   }
 
   getType(): string{
+    
     return "LineString";
   }
+
 
   isEmpty():boolean{
     return 0 == this.getNumPoints();

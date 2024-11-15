@@ -1,10 +1,11 @@
+import AbstractGeometry from "./AbstractGeometry";
 import Coordinate from "./Coordinate";
 import Envelope from "./Envelope";
 import EnvelopeBuilder from "./EnvelopeBuilder";
 import Geometry from "./Geometry";
 import GeometryVisitor from "./GeometryVisitor";
 
-export default class Point implements Geometry {
+export default class Point implements AbstractGeometry {
   private coordinate?: Coordinate;
 
   constructor(coordinate?: Coordinate) {
@@ -29,7 +30,10 @@ export default class Point implements Geometry {
     return builder.build();
  }
  
-
+ asText(): String {
+  if (this.isEmpty()) return "Je suis un point vide.";
+  return "Je suis un point avec x="+this.x()+ " et y="+this.y()+"";
+}
 
   clone(): Point {
   return new Point([this.x(),this.y()])
