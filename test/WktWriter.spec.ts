@@ -5,6 +5,7 @@ import Envelope from "../src/Envelope";
 import Point from "../src/Point";
 import WktWriter from "../src/WktWriter";
 import LineString from "../src/LineString";
+import LogGeometryVisitor from "../src/LogGeometryVisitor";
 
 
 describe("test  WktWriter", () => {
@@ -17,6 +18,12 @@ describe("test  WktWriter", () => {
         const  g2 = new Point([5.0,6.0]);
         const l = new LineString([g,g2]);
         expect(writer.write(l)).to.equal("LineString (3 4,5 6)")
+
+        //c'est pas bien
+        const visitor = new LogGeometryVisitor();
+        const geometry = new Point([3.0,4.0]);
+        geometry.accept(visitor);
+        l.accept(visitor);
         
     });
 });
