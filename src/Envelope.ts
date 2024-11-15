@@ -18,7 +18,6 @@ export default class Envelope{
         return  isNaN(this.bottomLeft[0]) || isNaN(this.bottomLeft[1]) ||isNaN(this.topRight[0]) || isNaN(this.topRight[1]);   
     }
     getXmin():number{
-        
         return this.bottomLeft[0]<this.topRight[0] ? this.bottomLeft[0] : this.topRight[0];
     }
     getYmin():number{

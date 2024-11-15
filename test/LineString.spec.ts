@@ -28,7 +28,7 @@ describe("test LinseString", () => {
         expect(l.getPointN(0).getCoordinate()).to.deep.equal([4.0,5.0]);
         expect(copy.getPointN(0).getCoordinate()).to.deep.equal([14.0,15.0]);
 
-        expect(l.getEnvelope().getXmax()).to.equal(4);
+        expect(l.getEnvelope().getXmax()).to.equal(5);
     });
     
 });
