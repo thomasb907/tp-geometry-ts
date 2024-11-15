@@ -6,10 +6,11 @@ import GeometryVisitor from "./GeometryVisitor";
 import WktWriter from "./WktWriter";
 import AbstractGeometry from "./AbstractGeometry";
 
-export default class LineString implements AbstractGeometry {
+export default class LineString extends AbstractGeometry {
   private points?: Array<Point>;;
 
   constructor(points ?:Array<Point> ) {
+    super();
     if (null==points){
       this.points = []
     }
@@ -30,11 +31,6 @@ export default class LineString implements AbstractGeometry {
     }
     return builder.build();
  }
- asText(): String {
-  if (this.isEmpty()) return "Je suis une polyligne vide.";
-  return "Je suis une polyligne définie par "+this.getNumPoints()+" point(s)."
-}
-
   clone(): LineString {
     let lpf : Array<Point> = [];
     for (const point of this.points){
