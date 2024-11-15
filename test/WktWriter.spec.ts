@@ -6,6 +6,7 @@ import Point from "../src/Point";
 import WktWriter from "../src/WktWriter";
 import LineString from "../src/LineString";
 import LogGeometryVisitor from "../src/LogGeometryVisitor";
+import WktVisitor from "../src/WktVisitor.ts";
 
 
 describe("test  WktWriter", () => {
@@ -24,6 +25,15 @@ describe("test  WktWriter", () => {
         const geometry = new Point([3.0,4.0]);
         geometry.accept(visitor);
         l.accept(visitor);
+
+        const visitor2 = new WktVisitor();
+        geometry.accept(visitor2);
+        // "POINT(3.0 4.0)"
+        const wkt2 = visitor2.getResult();
+        l.accept(visitor2);
+        const wkt3 = visitor2.getResult();
+        expect(wkt2).to.equal("Je suis un point avec x=3 et y=4");
+        expect(wkt3).to.equal("Je suis une polyligne définie par 2 point(s).");
         
     });
 });
