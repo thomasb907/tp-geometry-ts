@@ -25,11 +25,6 @@ export default class Point extends AbstractGeometry {
     return this;
  }
 
-  getEnvelope():Envelope{
-    const builder = new EnvelopeBuilder();
-    builder.insert(this.coordinate);
-    return builder.build();
- }
  
   clone(): Point {
   return new Point([this.x(),this.y()])

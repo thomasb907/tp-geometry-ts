@@ -24,13 +24,6 @@ export default class LineString extends AbstractGeometry {
     return this;
   }
 
-  getEnvelope():Envelope{
-    const builder = new EnvelopeBuilder();
-    for(const point of this.points){
-      builder.insert(point.getCoordinate())
-    }
-    return builder.build();
- }
   clone(): LineString {
     let lpf : Array<Point> = [];
     for (const point of this.points){
