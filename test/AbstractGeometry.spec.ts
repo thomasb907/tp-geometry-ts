@@ -1,12 +1,7 @@
 import "mocha";
 import { expect } from "chai";
-import EnvelopeBuilder from "../src/EnvelopeBuilder"
-import Envelope from "../src/Envelope";
 import Point from "../src/Point";
-import WktWriter from "../src/WktWriter";
 import LineString from "../src/LineString";
-import LogGeometryVisitor from "../src/LogGeometryVisitor";
-import WktVisitor from "../src/WktVisitor.ts";
 
 
 describe("test  AbstractGeom", () => {

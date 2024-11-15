@@ -1,8 +1,5 @@
 import AbstractGeometry from "./AbstractGeometry";
 import Coordinate from "./Coordinate";
-import Envelope from "./Envelope";
-import EnvelopeBuilder from "./EnvelopeBuilder";
-import Geometry from "./Geometry";
 import GeometryVisitor from "./GeometryVisitor";
 
 export default class Point extends AbstractGeometry {
