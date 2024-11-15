@@ -6,22 +6,45 @@ import GeometryVisitor from "./GeometryVisitor";
 
 export default class GeometryCollection extends AbstractGeometry {
 
-    private geometries:ArrayBuffer
+    private geometries?:Array<Geometry>;
+
+    constructor(geometries?:Array<Geometry>){
+        super();
+        if(null == geometries){
+            this.geometries=[]
+        }
+        else {
+            this.geometries= geometries;
+        }
+    }
 
     getType(): string {
-        throw new Error("Method not implemented.");
+        return "GEOMETRYCOLLECTION";
     }
     isEmpty(): boolean {
-        throw new Error("Method not implemented.");
+        return 0 == this.geometries.length;
     }
     translate(dx: number, dy: number): this {
-        throw new Error("Method not implemented.");
+        for (const geom of this.geometries){
+            geom.translate(dx,dy);
+        }
+        return this;
     }
     clone(): Geometry {
-        throw new Error("Method not implemented.");
+        let lpf : Array<Geometry> = [];
+        for (const geom of this.geometries){
+            lpf.push(geom.clone());
+            }
+        return new GeometryCollection(lpf);
     }
-    accept(visitor: GeometryVisitor) {
-        throw new Error("Method not implemented.");
+
+
+    accept(visitor:GeometryVisitor){
+        
+    }
+
+    public getGeometries():Array<Geometry>{
+        return this.geometries;
     }
     
 }
