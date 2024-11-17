@@ -40,11 +40,15 @@ export default class GeometryCollection extends AbstractGeometry {
 
 
     accept(visitor:GeometryVisitor){
-        
+        visitor.visitGeometryCollection(this);
     }
 
-    public getGeometries():Array<Geometry>{
-        return this.geometries;
+    getNumGeometries():number{
+        return this.geometries.length;
     }
+    getGeometryN(n:number):Geometry{
+        return this.geometries[n];
+    }
+
     
 }

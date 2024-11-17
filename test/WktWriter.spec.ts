@@ -30,8 +30,7 @@ describe("test  WktWriter", () => {
         const wkt2 = visitor2.getResult();
         l.accept(visitor2);
         const wkt3 = visitor2.getResult();
-        expect(wkt2).to.equal("Je suis un point avec x=3 et y=4");
-        //expect(wkt3).to.equal("Je suis une polyligne définie par 2 point(s).");
+        expect(wkt2).to.equal("POINT(3 4)");
         
     });
 });

@@ -11,8 +11,8 @@ describe("test  AbstractGeom", () => {
         const  g2 = new Point([5.0,6.0]);
         const l = new LineString([g,g2]);
 
-        expect(g.asText()).to.equal("Je suis un point avec x=3 et y=4");
-        expect(l.asText()).to.equal("Je suis une polyligne définie par 2 point(s).");
+        expect(g.asText()).to.equal("POINT(3 4)");
+        expect(l.asText()).to.equal("LINESTRING(3 4,5 6)");
         
     });
 });

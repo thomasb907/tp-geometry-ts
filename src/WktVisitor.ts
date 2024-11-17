@@ -12,14 +12,20 @@ export default class WktVisitor implements GeometryVisitor{
         if(point.isEmpty())
             this.buffer+="POINT EMPTY";
         else{
-            this.buffer+="Je suis un point avec x="+point.x()+" et y="+point.y();
+            this.buffer+="POINT("+point.x()+" "+point.y()+")";
         }
     }
     visitLineString(lineString:LineString){
         if(lineString.isEmpty())
             this.buffer+="LINESTRING EMPTY";
         else{
-            this.buffer+="Je suis une polyligne définie par "+lineString.getNumPoints()+" point(s).";
+            this.buffer+="LINESTRING("+lineString.getPointN(0).x()+" "+lineString.getPointN(0).y();;
+            
+            for(let i=1;i< lineString.getNumPoints();i++){
+                this.buffer+=","+lineString.getPointN(i).x()+" ";
+                this.buffer+=lineString.getPointN(i).y();
+            }
+            this.buffer+=")";
         }
     }
     visitGeometryCollection(geometrycollection:GeometryCollection){
@@ -28,10 +34,12 @@ export default class WktVisitor implements GeometryVisitor{
         else{
             
             this.buffer+="GEOMETRYCOLLECTION(";
-            for (const geometrie of geometrycollection.getGeometries()){
-                geometrie.accept(this);
+            geometrycollection.getGeometryN(0).accept(this);
+            for (let i=1;i<geometrycollection.getNumGeometries();i++){
+                this.buffer+=","
+                geometrycollection.getGeometryN(i).accept(this);
             }
-
+            this.buffer+=")";
         }
     }
 
